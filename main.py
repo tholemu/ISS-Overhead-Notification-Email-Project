@@ -3,8 +3,8 @@ from datetime import datetime
 import smtplib
 import time
 
-MY_EMAIL = "name@yahoo.com"
-MY_PASSWORD = "password"
+MY_EMAIL = "name@yahoo.com" #Enter your valid email address
+MY_PASSWORD = "password" #Enter your email password
 MY_LAT = 38.627003 # Your latitude
 MY_LONG = -90.199402 # Your longitude
 
@@ -41,7 +41,7 @@ def is_night():
     if time_now >= sunset or time_now <= sunrise:
         return True
 
-#While loop for determining if ISS is overhead and if its dark, then send me an email to look up in the sky
+#While loop for determining if ISS is overhead and if its dark, then send yourself an email to look up in the sky
 while True:
     time.sleep(60)
     if is_iss_overhead() and is_night():
