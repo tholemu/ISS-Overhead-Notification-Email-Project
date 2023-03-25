@@ -42,6 +42,11 @@ def is_night():
         return True
 
 #While loop for determining if ISS is overhead and if its dark, then send yourself an email to look up in the sky
+#Make sure you've got the correct smtp address for your email provider:
+#Gmail: smtp.gmail.com
+#Hotmail: smtp.live.com
+#Outlook: outlook.office365.com
+#Yahoo: smtp.mail.yahoo.com
 while True:
     time.sleep(60)
     if is_iss_overhead() and is_night():
