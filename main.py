@@ -1,18 +1,18 @@
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 import smtplib
 import time
 
-MY_EMAIL = "username" #Enter your valid email address
-MY_PASSWORD = "password" #Enter your email password
+MY_EMAIL = "bowlermj84@gmail.com" #Enter your valid email address
+MY_PASSWORD ="" #Enter your email password
 MY_LAT = 38.627003 # Your latitude
 MY_LONG = -90.199402 # Your longitude
 
 # Run the script, gather the current coordinates
 # then update the following accordingly to force
 # success
-MY_LAT = 5.1907
-MY_LONG = 177.9746
+MY_LAT = -29.0531
+MY_LONG = 6.0933
 
 
 #Function for findout out if the ISS is close to my current position
@@ -40,7 +40,10 @@ def is_night():
         "formatted": 0,
     }
 
-    response = requests.get("https://api.sunrise-sunset.org/json", params=parameters)
+    response = requests.get(f"https://api.sunrise-sunset.org/json", params=parameters)
+
+    print(response.url)
+
     response.raise_for_status()
     data = response.json()
     sunrise = int(data["results"]["sunrise"].split("T")[1].split(":")[0])
@@ -49,7 +52,7 @@ def is_night():
     print(f"sunrise: {sunrise}")
     print(f"sunset: {sunset}")
 
-    time_now = datetime.now().hour
+    time_now = datetime.now(timezone.utc).hour
 
     print(f"time_now: {time_now}")
 
